@@ -1,0 +1,8 @@
+example\myapp\helloworld\grpc\HelloRequest.class
+example\myapp\helloworld\grpc\GreeterService$Serializers.class
+example\myapp\helloworld\grpc\GreeterService.class
+com\example\hello\impl\HelloModule.class
+example\myapp\helloworld\grpc\HelloRequest$1.class
+example\myapp\helloworld\grpc\HelloRequest$Builder.class
+example\myapp\helloworld\grpc\HelloWorldProto.class
+example\myapp\helloworld\grpc\HelloRequestOrBuilder.class
