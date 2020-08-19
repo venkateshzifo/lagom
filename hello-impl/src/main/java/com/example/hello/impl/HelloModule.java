@@ -9,7 +9,7 @@ public class HelloModule extends AbstractModule implements ServiceGuiceSupport {
     protected void configure() {
         bindService(
             HelloService.class, HelloServiceImpl.class
-            //additionalRouter(HelloGrpcServiceImpl.class)
+//            additionalRouter(HelloGrpcServiceImpl.class)
         );
     }
 

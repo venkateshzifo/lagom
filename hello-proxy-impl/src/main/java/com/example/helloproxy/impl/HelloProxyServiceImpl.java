@@ -6,11 +6,11 @@ import javax.inject.Singleton;
 import com.example.hello.api.HelloService;
 import com.example.helloproxy.api.HelloProxyService;
 import com.lightbend.lagom.javadsl.api.ServiceCall;
+import com.zifo.cuttle.importservice.impl.grpc.GreeterServiceClient;
+import com.zifo.cuttle.importservice.impl.grpc.HelloReply;
+import com.zifo.cuttle.importservice.impl.grpc.HelloRequest;
 
 import akka.NotUsed;
-import example.myapp.helloworld.grpc.GreeterServiceClient;
-import example.myapp.helloworld.grpc.HelloReply;
-import example.myapp.helloworld.grpc.HelloRequest;
 
 @Singleton
 public class HelloProxyServiceImpl implements HelloProxyService {

@@ -18,60 +18,68 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.lightbend.lagom</groupId>
-            <artifactId>lagom-javadsl-api_${scala.binary.version}</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.lightbend.lagom</groupId>
-            <artifactId>lagom-javadsl-server_${scala.binary.version}</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.typesafe.play</groupId>
-            <artifactId>play-akka-http-server_${scala.binary.version}</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-<!-- 		<dependency> -->
-<!-- 		    <groupId>com.lightbend.akka.grpc</groupId> -->
-<!-- 		    <artifactId>akka-grpc-runtime_${scala.binary.version}</artifactId> -->
-<!-- 		    <version>1.0.1</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 		    <groupId>com.lightbend.akka.grpc</groupId> -->
-<!-- 		    <artifactId>akka-grpc-codegen_${scala.binary.version}</artifactId> -->
-<!-- 		    <version>1.0.1</version> -->
-<!-- 		</dependency> -->
-
-		<!-- https://mvnrepository.com/artifact/com.lightbend.play/play-grpc-runtime -->
-		<dependency>
-		    <groupId>com.lightbend.play</groupId>
-		    <artifactId>play-grpc-runtime_${scala.binary.version}</artifactId>
-		    <version>0.8.2</version>
+			<groupId>com.lightbend.lagom</groupId>
+			<artifactId>lagom-javadsl-api_${scala.binary.version}</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>com.lightbend.lagom</groupId>
+			<artifactId>lagom-javadsl-server_${scala.binary.version}</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>play-akka-http-server_${scala.binary.version}</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.lightbend.lagom</groupId>
+			<artifactId>lagom-logback_${scala.binary.version}</artifactId>
+			<version>${lagom.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.lightbend.lagom</groupId>
+			<artifactId>lagom-javadsl-testkit_${scala.binary.version}</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-library</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.lightbend.lagom</groupId>
+			<artifactId>lagom-javadsl-akka-discovery-service-locator_${scala.binary.version}</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.lightbend.akka.discovery</groupId>
+			<artifactId>akka-discovery-kubernetes-api_${scala.binary.version}</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.typesafe.akka</groupId>
+			<artifactId>akka-discovery_${scala.binary.version}</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.lightbend.akka.grpc</groupId>
+			<artifactId>akka-grpc-runtime_${scala.binary.version}</artifactId>
+			<version>${akka.grpc.version}</version>
+		</dependency>
+		<!-- Needed for the generated client -->
+		<dependency>
+			<groupId>io.grpc</groupId>
+			<artifactId>grpc-stub</artifactId>
+			<version>${grpc.version}</version>
+		</dependency>
 		<dependency>
 		    <groupId>com.typesafe.akka</groupId>
 		    <artifactId>akka-http2-support_${scala.binary.version}</artifactId>
-		    <version>10.2.0</version>
+		    <version>10.1.12</version>
 		</dependency>
 		<dependency>
-		    <groupId>com.lightbend.play</groupId>
-		    <artifactId>play-grpc-generators_2.12</artifactId>
-		    <version>0.8.2</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.lightbend.akka.grpc/akka-grpc-runtime -->
-		<dependency>
-		    <groupId>com.lightbend.akka.grpc</groupId>
-		    <artifactId>akka-grpc-runtime_2.13</artifactId>
-		    <version>1.0.1</version>
-		</dependency>
-				
-		<dependency>
-		    <groupId>com.lightbend.play</groupId>
-		    <artifactId>lagom-javadsl-grpc-testkit_${scala.binary.version}</artifactId>
-		    <version>0.8.2</version>
+			<groupId>com.lightbend.play</groupId>
+			<artifactId>play-grpc-runtime_${scala.binary.version}</artifactId>
+			<version>0.8.2</version>
 		</dependency>
     </dependencies>
 	
@@ -95,29 +103,34 @@
                 </configuration>
             </plugin>
             <plugin>
-			    <groupId>com.lightbend.akka.grpc</groupId>
-			    <artifactId>akka-grpc-maven-plugin</artifactId>
-			    <version>${akka.grpc.version}</version>
-			    <configuration>
-			      <language>Java</language>
-			      <generateClient>true</generateClient>
-			      <generateServer>true</generateServer>
-			      <generatorSettings>
-			        <serverPowerApis>true</serverPowerApis>
-			      </generatorSettings>
-			      <protoPaths>
-			        <protoPath>src/main/protobuf</protoPath>
-			      </protoPaths>
-			    </configuration>
-			    <executions>
-		          <execution>
-		            <goals>
-		              <goal>generate</goal>
-		            </goals>
-		          </execution>
-		        </executions>
+            	<groupId>com.lightbend.akka.grpc</groupId>
+				<artifactId>akka-grpc-maven-plugin</artifactId>
+				<version>${akka.grpc.version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.lightbend.play</groupId>
+						<artifactId>play-grpc-generators_2.12</artifactId>
+						<version>0.8.2</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<language>Java</language>
+					<outputDirectory>${akka-grpc.outputDirectory}</outputDirectory>
+					<extraGenerators>
+						<extraGenerator>play.grpc.gen.javadsl.PlayJavaServerCodeGenerator</extraGenerator>
+					</extraGenerators>
+					<generateClient>true</generateClient>
+					<generateServer>true</generateServer>
+					<generatorSettings></generatorSettings>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
-			
         </plugins>
     </build>
 </project>

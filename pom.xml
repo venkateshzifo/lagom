@@ -206,11 +206,13 @@
 
     <properties>
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <lagom.version>1.6.3</lagom.version>
+        <lagom.version>1.6.2</lagom.version>
         <scala.binary.version>2.13</scala.binary.version>
         <akka.management.version>1.0.3</akka.management.version>
         <hamcrest.version>2.1</hamcrest.version>
         <akka.grpc.version>1.0.1</akka.grpc.version>
+        <grpc.version>1.28.1</grpc.version>
+        <akka-grpc.outputDirectory>src/main/java</akka-grpc.outputDirectory>
 
         <!--
             Using Lagom prefix to avoid conflicts with others.
